@@ -1,0 +1,9 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\yunis\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\yunis\\.nuget\\packages",
+      "D:\\Programms\\DevExpress\\Offline Packages"
+    ]
+  }
+}

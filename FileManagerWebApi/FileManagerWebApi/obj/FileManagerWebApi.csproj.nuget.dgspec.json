@@ -1,0 +1,86 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\Projects\\VSprojects\\FileManagerWebApi\\FileManagerWebApi\\FileManagerWebApi\\FileManagerWebApi.csproj": {}
+  },
+  "projects": {
+    "D:\\Projects\\VSprojects\\FileManagerWebApi\\FileManagerWebApi\\FileManagerWebApi\\FileManagerWebApi.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Projects\\VSprojects\\FileManagerWebApi\\FileManagerWebApi\\FileManagerWebApi\\FileManagerWebApi.csproj",
+        "projectName": "FileManagerWebApi",
+        "projectPath": "D:\\Projects\\VSprojects\\FileManagerWebApi\\FileManagerWebApi\\FileManagerWebApi\\FileManagerWebApi.csproj",
+        "packagesPath": "C:\\Users\\yunis\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\VSprojects\\FileManagerWebApi\\FileManagerWebApi\\FileManagerWebApi\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Programms\\DevExpress\\Offline Packages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\yunis\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 19.1.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 21.2.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "D:\\Programms\\DevExpress\\Bin\\Framework": {},
+          "D:\\Programms\\DevExpress\\Offline Packages": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.3, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[5.6.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.411\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
