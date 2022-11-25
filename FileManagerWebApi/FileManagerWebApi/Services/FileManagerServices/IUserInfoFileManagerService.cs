@@ -9,6 +9,8 @@ namespace FileManagerWebApi.Services.FileManagerServices
     {
         public void AddUser(string gmail);
 
+        public void DownloadFile(string fromGmail, string fileName, string destPath);
+
         public bool DeleteUser(string gmail);
 
         public void AddFile(string gmail, string fileName, string filePath);

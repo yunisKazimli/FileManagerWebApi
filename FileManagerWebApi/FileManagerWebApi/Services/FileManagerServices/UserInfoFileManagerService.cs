@@ -13,7 +13,7 @@ namespace FileManagerWebApi.Services.FileManagerServices
 
         public void AddFile(string gmail, string fileName, string filePath)
         {
-            File.Copy(@$"{filePath}\{fileName} ", mainDirectoryPath + @$"\{gmail}\{fileName}");
+            File.Copy(@$"{filePath}\{fileName}", mainDirectoryPath + @$"\{gmail}\{fileName}");
         }
 
         public void AddUser(string gmail)
@@ -60,6 +60,11 @@ namespace FileManagerWebApi.Services.FileManagerServices
         public bool DeleteUser(string gmail)
         {
             throw new NotImplementedException();
+        }
+
+        public void DownloadFile(string fromGmail, string fileName, string destPath)
+        {
+            File.Copy(mainDirectoryPath + @$"/{fromGmail}/{fileName}", destPath + @$"/{fileName}");
         }
 
         public void ShareFile(string gmail, string[] toGmail, string[] filesName)

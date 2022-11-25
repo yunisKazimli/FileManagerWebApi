@@ -1,31 +1,32 @@
 ﻿using FileManagerWebApi.Services.FileManagerServices;
+using FileManagerWebApi.Services.LoggingServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Security.Claims;
 
 namespace FileManagerWebApi.Controllers
 {
     public class FileManagerController : Controller
     {
-        private readonly IUserInfoFileManagerService userInfoFLservice;
+        private readonly IUserInfoFileManagerService userInfoFMservice;
+        private readonly ISigningUpService signingUpService;
 
-        public FileManagerController(IUserInfoFileManagerService _userInfoFLservice)
+        public FileManagerController(IUserInfoFileManagerService _userInfoFMservice, ISigningUpService _signingUpService)
         {
-            userInfoFLservice = _userInfoFLservice;
+            userInfoFMservice = _userInfoFMservice;
+            signingUpService = _signingUpService;
         }
 
         [Authorize("Bearer")]
-        [HttpPost("AddFile")]
+        [/*HttpPost*/HttpGet("AddFile")]
         public IActionResult AddFile(string fileName, string filePath)
         {
-            string gmail = "";
+            string gmail = (HttpContext.User.Identity as ClaimsIdentity).FindFirst("Gmail").Value;
 
             try
             {
-                userInfoFLservice.AddFile(gmail, fileName, filePath);
+                userInfoFMservice.AddFile(gmail, fileName, filePath);
             }
             catch(Exception e)
             {
@@ -36,14 +37,12 @@ namespace FileManagerWebApi.Controllers
         }
 
         [Authorize("Bearer")]
-        [HttpPost("ShareFile")]
-        public IActionResult ShareFile(string[] toGmails, string[] filesName)
+        [/*HttpPost*/HttpGet("DownloadFile")]
+        public IActionResult DownloadFile(string fromGmail, string fileName, string destPath)
         {
-            string gmail = "";
-
             try
             {
-                userInfoFLservice.ShareFile(gmail, toGmails, filesName);
+                userInfoFMservice.DownloadFile(fromGmail, fileName, destPath);
             }
             catch (Exception e)
             {
@@ -54,16 +53,34 @@ namespace FileManagerWebApi.Controllers
         }
 
         [Authorize("Bearer")]
-        [HttpGet("AllAcceptedFiles")]
-        public IActionResult ShowAllAcceptedFiles()
+        [/*HttpPost*/HttpGet("ShareFile")]
+        public IActionResult ShareFile(string[] toGmails, string[] filesName)
         {
-            string gmail = "";
+            string gmail = (HttpContext.User.Identity as ClaimsIdentity).FindFirst("Gmail").Value;
+
+            try
+            {
+                userInfoFMservice.ShareFile(gmail, toGmails, filesName);
+            }
+            catch (Exception e)
+            {
+                return Problem(e.Message);
+            }
+
+            return Ok("success");
+        }
+
+        [Authorize("Bearer")]
+        [HttpGet("GetAllAcceptedFiles")]
+        public IActionResult GetAllAcceptedFiles()
+        {
+            string gmail = (HttpContext.User.Identity as ClaimsIdentity).FindFirst("Gmail").Value;
 
             string[] allSharedFiles;
 
             try
             {
-                allSharedFiles = userInfoFLservice.ShowAllAcceptedFiles(gmail);
+                allSharedFiles = userInfoFMservice.ShowAllAcceptedFiles(gmail);
             }
             catch(Exception e)
             {
@@ -74,14 +91,14 @@ namespace FileManagerWebApi.Controllers
         }
 
         [Authorize("Bearer")]
-        [HttpDelete("DeleteFile")]
+        [/*HttpDelete*/HttpGet("DeleteFile")]
         public IActionResult DeleteFile(string fileName, bool isPersonal)
         {
-            string gmail = "";
+            string gmail = (HttpContext.User.Identity as ClaimsIdentity).FindFirst("Gmail").Value;
 
             try
             {
-                userInfoFLservice.DeleteFile(gmail, fileName, isPersonal);
+                userInfoFMservice.DeleteFile(gmail, fileName, isPersonal);
             }
             catch(Exception e)
             {
@@ -89,6 +106,13 @@ namespace FileManagerWebApi.Controllers
             }
 
             return Ok("Success");
+        }
+
+        [Authorize("Bearer")]
+        [/*HttpDelete*/HttpGet("GetAllGmails")]
+        public IActionResult GetAllGmails()
+        {
+            return Ok(signingUpService.GetAllGmails());
         }
 
         public IActionResult Index()

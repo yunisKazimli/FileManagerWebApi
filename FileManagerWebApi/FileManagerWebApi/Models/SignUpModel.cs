@@ -11,13 +11,13 @@ namespace FileManagerWebApi.Models
 
         public string Password { get; set; }
 
-        public string ConfirmPassword { get; set; }
+        /*public string ConfirmPassword { get; set; }*/
 
-        public SignUpModel(string gmail, string password, string confirmPassword)
+        public SignUpModel(string gmail, string password/*, string confirmPassword*/)
         {
             Gmail = gmail;
             Password = password;
-            ConfirmPassword = confirmPassword;
+            /*ConfirmPassword = confirmPassword;*/
         }
     }
 }

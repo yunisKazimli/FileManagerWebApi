@@ -22,7 +22,7 @@ namespace FileManagerWebApi.Services.JWTService
             {
                 Subject = new ClaimsIdentity(new List<Claim>
                 {
-                    new Claim("Id", user.Gmail)
+                    new Claim("Gmail", user.Gmail)
                 }),
                 Audience = "AAA",
                 Issuer = "AAA",

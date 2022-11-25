@@ -9,5 +9,7 @@ namespace FileManagerWebApi.Services.LoggingServices
     public interface ISigningUpService
     {
         public void SignUp(SignUpModel signUpModel, IUserFileManagerService userFM);
+
+        public string[] GetAllGmails();
     }
 }

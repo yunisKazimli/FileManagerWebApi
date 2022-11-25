@@ -47,10 +47,10 @@ namespace FileManagerWebApi.Controllers
             return Ok(token);
         }
 
-        [HttpPost("SignUp")]
-        public IActionResult SignUp(/*SignUpModel signUpModel*/string Gmail, string Password, string ConfirmPassword)
+        [/*HttpPost*/HttpGet("SignUp")]
+        public IActionResult SignUp(/*SignUpModel signUpModel*/string Gmail, string Password/*, string ConfirmPassword*/)
         {
-            SignUpModel signUpModel = new SignUpModel(Gmail, Password, ConfirmPassword);
+            SignUpModel signUpModel = new SignUpModel(Gmail, Password/*, ConfirmPassword*/);
 
             try
             {
