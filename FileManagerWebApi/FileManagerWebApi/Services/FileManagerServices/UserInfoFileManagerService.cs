@@ -2,18 +2,22 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace FileManagerWebApi.Services.FileManagerServices
 {
     public class UserInfoFileManagerService : IUserInfoFileManagerService
     {
-        private readonly string mainDirectoryPath = @"D:\Projects\VSprojects\FileManagerWebApi\UserFilesFolder";
-        private readonly string fileInfoPath = @"D:\Projects\VSprojects\FileManagerWebApi\UserFilesFolder\InfoFolder\FileInfo.finf";
+        private readonly string mainDirectoryPath = @"UserFilesFolder";
+        private readonly string fileInfoPath = @"UserFilesFolder\InfoFolder\FileInfo.finf";
+        private readonly string fileUrlInfoPath = @"UserFilesFolder\InfoFolder\FileUrlInfo.ufinf";
 
-        public void AddFile(string gmail, string fileName, string filePath)
+        public void AddFile(string gmail, string fileName, string filePath, string url)
         {
             File.Copy(@$"{filePath}\{fileName}", mainDirectoryPath + @$"\{gmail}\{fileName}");
+
+            File.AppendAllText(fileUrlInfoPath, $"!1!{gmail}!2!{gmail}!3!{fileName}!4!{url}\n");
         }
 
         public void AddUser(string gmail)
@@ -21,19 +25,22 @@ namespace FileManagerWebApi.Services.FileManagerServices
             Directory.CreateDirectory(mainDirectoryPath + @$"\{gmail}");
         }
 
-        public void DeleteFile(string gmail, string fileName, bool isPersonalFile)
+        public void DeleteFile(string gmail, string fromGmail, string fileName, bool isPersonalFile)
         {
             string fileInfoText = File.ReadAllText(fileInfoPath);
+            string fileUrlText = File.ReadAllText(fileUrlInfoPath);
 
             if (!isPersonalFile)
             {
-                int fileIndex = fileInfoText.IndexOf($"!2!{gmail}!3!{fileName}");
+                fileInfoText = fileInfoText.Remove(fileInfoText.IndexOf($"!1!{fromGmail}!2!{gmail}!3!{fileName}"), ($"!1!{fromGmail}!2!{gmail}!3!{fileName}").Length);
 
-                for (int i = fileIndex - 1; i >= 0; i--)
+                int urlIndex = fileUrlText.IndexOf($"!1!{fromGmail}!2!{gmail}!3!{fileName}!4!");
+
+                for (int i = urlIndex; i < fileUrlText.Length; i++)
                 {
-                    if (fileInfoText[i] == '!' && fileInfoText[i - 1] == '1' && fileInfoText[i - 2] == '!')
+                    if (fileUrlText[i] == '\n')
                     {
-                        fileInfoText = fileInfoText.Remove(i - 2, fileIndex + ($"!2!{gmail}!3!{fileName}").Length + 1);
+                        fileUrlText = fileUrlText.Remove(urlIndex, i - urlIndex);
 
                         break;
                     }
@@ -43,18 +50,26 @@ namespace FileManagerWebApi.Services.FileManagerServices
             else
             {
                 List<string> fileInfoList = fileInfoText.Split('\n').ToList();
+                List<string> fileUrlList = fileUrlText.Split('\n').ToList();
 
                 fileInfoText = "";
+                fileUrlText = "";
 
                 foreach (string fil in fileInfoList)
                 {
                     if (!(fil.IndexOf($"!1!{gmail}!2!") != -1 && fil.IndexOf($"!3!{fileName}") != -1)) fileInfoText += fil + "\n";
                 }
 
+                foreach(string ful in fileUrlList)
+                {
+                    if (!(ful.IndexOf($"!1!{fromGmail}!2!") != -1 && ful.IndexOf($"!3!{fileName}") != -1)) fileUrlText += ful + "\n";
+                }
+
                 File.Delete(mainDirectoryPath + $@"\{gmail}\{fileName}");
             }
 
             File.WriteAllText(fileInfoPath, fileInfoText);
+            File.WriteAllText(fileUrlInfoPath, fileUrlText);
         }
 
         public bool DeleteUser(string gmail)
@@ -62,14 +77,15 @@ namespace FileManagerWebApi.Services.FileManagerServices
             throw new NotImplementedException();
         }
 
-        public void DownloadFile(string fromGmail, string fileName, string destPath)
+        public void DownloadFile(string ownGmail, string fromGmail, string fileName, string destPath)
         {
             File.Copy(mainDirectoryPath + @$"/{fromGmail}/{fileName}", destPath + @$"/{fileName}");
         }
 
-        public void ShareFile(string gmail, string[] toGmail, string[] filesName)
+        public void ShareFile(string gmail, string[] toGmail, string[] filesName, string url)
         {
-            string text = "";
+            string textToInfoFile = "";
+            string textToUrlInfoFile = "";
 
             for (int i = 0; i < toGmail.Length; i++)
             {
@@ -87,11 +103,14 @@ namespace FileManagerWebApi.Services.FileManagerServices
                     //check if gmail already shared this file to toGmail in past
                     if (File.ReadAllText(fileInfoPath).IndexOf($"!1!{gmail}!2!{toGmail[i]}!3!{filesName[j]}") != -1) throw new Exception($"{gmail} already shared {filesName[j]} to {toGmail[i]}");
 
-                    text += $"!1!{gmail}!2!{toGmail[i]}!3!{filesName[j]}\n";
+                    textToInfoFile += $"!1!{gmail}!2!{toGmail[i]}!3!{filesName[j]}\n";
+
+                    textToUrlInfoFile += $"!1!{gmail}!2!{toGmail[i]}!3!{filesName[j]}!4!{url}\n";
                 }
             }
 
-            File.AppendAllText(fileInfoPath, text);
+            File.AppendAllText(fileInfoPath, textToInfoFile);
+            File.AppendAllText(fileUrlInfoPath, textToUrlInfoFile);
         }
 
         public string[] ShowAllAcceptedFiles(string gmail)
@@ -124,6 +143,15 @@ namespace FileManagerWebApi.Services.FileManagerServices
             foreach (FileInfo fi in allOwnFiles) allFiles.Add(fi.FullName);
 
             return allFiles.ToArray();
+        }
+        
+        public string[] GetAllFilesUrl(string gmail)
+        {
+            List<string> allFilesUrl = File.ReadAllText(fileUrlInfoPath).Split('\n').ToList();
+
+            allFilesUrl = allFilesUrl.Where(x => x.IndexOf("!2!" + gmail + "!3!") != -1).ToList();
+
+            return allFilesUrl.ToArray();
         }
     }
 }

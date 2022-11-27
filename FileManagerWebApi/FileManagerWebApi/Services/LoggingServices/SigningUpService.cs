@@ -12,7 +12,7 @@ namespace FileManagerWebApi.Services.LoggingServices
 {
     public class SigningUpService : ISigningUpService
     {
-        private readonly string mainDirectoryPath = @"D:\Projects\VSprojects\FileManagerWebApi\UserFilesFolder";
+        private readonly string mainDirectoryPath = @"UserFilesFolder";
 
         public string[] GetAllGmails()
         {

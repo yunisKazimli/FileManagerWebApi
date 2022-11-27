@@ -9,16 +9,18 @@ namespace FileManagerWebApi.Services.FileManagerServices
     {
         public void AddUser(string gmail);
 
-        public void DownloadFile(string fromGmail, string fileName, string destPath);
+        public void DownloadFile(string ownGmail, string fromGmail, string fileName, string destPath);
 
         public bool DeleteUser(string gmail);
 
-        public void AddFile(string gmail, string fileName, string filePath);
+        public void AddFile(string gmail, string fileName, string filePath, string url);
 
-        public void ShareFile(string gmail, string[] toGmail, string[] filesName);
+        public void ShareFile(string gmail, string[] toGmail, string[] filesName, string url);
 
-        public void DeleteFile(string gmail, string fileName, bool isPersonalFile);
+        public void DeleteFile(string gmail, string fromGmail, string fileName, bool isPersonalFile);
 
         public string[] ShowAllAcceptedFiles(string gmail);
+
+        public string[] GetAllFilesUrl(string gmail);
     }
 }

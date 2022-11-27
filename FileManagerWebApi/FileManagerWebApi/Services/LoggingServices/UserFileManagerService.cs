@@ -9,7 +9,7 @@ namespace FileManagerWebApi.Services.LoggingServices
 {
     public class UserFileManagerService : IUserFileManagerService
     {
-        private readonly string userInfoPath = @"D:\Projects\VSprojects\FileManagerWebApi\UserFilesFolder\InfoFolder\UserInfo.uinf";
+        private readonly string userInfoPath = @"UserFilesFolder\InfoFolder\UserInfo.uinf";
 
         public string ReadAllUsers()
         {

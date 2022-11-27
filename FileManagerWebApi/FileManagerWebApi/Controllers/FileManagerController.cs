@@ -26,7 +26,7 @@ namespace FileManagerWebApi.Controllers
 
             try
             {
-                userInfoFMservice.AddFile(gmail, fileName, filePath);
+                userInfoFMservice.AddFile(gmail, fileName, filePath, $"{Request.Scheme}://{Request.Host}{Request.PathBase}{Request.Path}{Request.QueryString}");
             }
             catch(Exception e)
             {
@@ -40,9 +40,11 @@ namespace FileManagerWebApi.Controllers
         [/*HttpPost*/HttpGet("DownloadFile")]
         public IActionResult DownloadFile(string fromGmail, string fileName, string destPath)
         {
+            string gmail = (HttpContext.User.Identity as ClaimsIdentity).FindFirst("Gmail").Value;
+
             try
             {
-                userInfoFMservice.DownloadFile(fromGmail, fileName, destPath);
+                userInfoFMservice.DownloadFile(gmail, fromGmail, fileName, destPath);
             }
             catch (Exception e)
             {
@@ -60,7 +62,7 @@ namespace FileManagerWebApi.Controllers
 
             try
             {
-                userInfoFMservice.ShareFile(gmail, toGmails, filesName);
+                userInfoFMservice.ShareFile(gmail, toGmails, filesName, $"{Request.Scheme}://{Request.Host}{Request.PathBase}{Request.Path}{Request.QueryString}");
             }
             catch (Exception e)
             {
@@ -91,14 +93,34 @@ namespace FileManagerWebApi.Controllers
         }
 
         [Authorize("Bearer")]
+        [HttpGet("GetAllFilesUrl")]
+        public IActionResult GetAllFilesUrl()
+        {
+            string gmail = (HttpContext.User.Identity as ClaimsIdentity).FindFirst("Gmail").Value;
+
+            string[] allFilesUrl;
+
+            try
+            {
+                allFilesUrl = userInfoFMservice.GetAllFilesUrl(gmail);
+            }
+            catch (Exception e)
+            {
+                return Problem(e.Message);
+            }
+
+            return Ok(allFilesUrl);
+        }
+
+        [Authorize("Bearer")]
         [/*HttpDelete*/HttpGet("DeleteFile")]
-        public IActionResult DeleteFile(string fileName, bool isPersonal)
+        public IActionResult DeleteFile(string fromGmail, string fileName, bool isPersonal)
         {
             string gmail = (HttpContext.User.Identity as ClaimsIdentity).FindFirst("Gmail").Value;
 
             try
             {
-                userInfoFMservice.DeleteFile(gmail, fileName, isPersonal);
+                userInfoFMservice.DeleteFile(gmail, fromGmail, fileName, isPersonal);
             }
             catch(Exception e)
             {
