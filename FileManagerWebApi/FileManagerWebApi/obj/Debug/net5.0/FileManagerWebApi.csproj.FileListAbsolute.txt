@@ -5,7 +5,6 @@ D:\Projects\VSprojects\FileManagerWebApi\FileManagerWebApi\FileManagerWebApi\bin
 D:\Projects\VSprojects\FileManagerWebApi\FileManagerWebApi\FileManagerWebApi\bin\Debug\net5.0\FileManagerWebApi.runtimeconfig.json
 D:\Projects\VSprojects\FileManagerWebApi\FileManagerWebApi\FileManagerWebApi\bin\Debug\net5.0\FileManagerWebApi.runtimeconfig.dev.json
 D:\Projects\VSprojects\FileManagerWebApi\FileManagerWebApi\FileManagerWebApi\bin\Debug\net5.0\FileManagerWebApi.dll
-D:\Projects\VSprojects\FileManagerWebApi\FileManagerWebApi\FileManagerWebApi\bin\Debug\net5.0\ref\FileManagerWebApi.dll
 D:\Projects\VSprojects\FileManagerWebApi\FileManagerWebApi\FileManagerWebApi\bin\Debug\net5.0\FileManagerWebApi.pdb
 D:\Projects\VSprojects\FileManagerWebApi\FileManagerWebApi\FileManagerWebApi\bin\Debug\net5.0\Microsoft.OpenApi.dll
 D:\Projects\VSprojects\FileManagerWebApi\FileManagerWebApi\FileManagerWebApi\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
@@ -19,7 +18,6 @@ D:\Projects\VSprojects\FileManagerWebApi\FileManagerWebApi\FileManagerWebApi\obj
 D:\Projects\VSprojects\FileManagerWebApi\FileManagerWebApi\FileManagerWebApi\obj\Debug\net5.0\FileManagerWebApi.MvcApplicationPartsAssemblyInfo.cs
 D:\Projects\VSprojects\FileManagerWebApi\FileManagerWebApi\FileManagerWebApi\obj\Debug\net5.0\FileManagerWebApi.MvcApplicationPartsAssemblyInfo.cache
 D:\Projects\VSprojects\FileManagerWebApi\FileManagerWebApi\FileManagerWebApi\obj\Debug\net5.0\staticwebassets\FileManagerWebApi.StaticWebAssets.Manifest.cache
-D:\Projects\VSprojects\FileManagerWebApi\FileManagerWebApi\FileManagerWebApi\obj\Debug\net5.0\staticwebassets\FileManagerWebApi.StaticWebAssets.xml
 D:\Projects\VSprojects\FileManagerWebApi\FileManagerWebApi\FileManagerWebApi\obj\Debug\net5.0\scopedcss\bundle\FileManagerWebApi.styles.css
 D:\Projects\VSprojects\FileManagerWebApi\FileManagerWebApi\FileManagerWebApi\obj\Debug\net5.0\FileManagerWebApi.RazorTargetAssemblyInfo.cache
 D:\Projects\VSprojects\FileManagerWebApi\FileManagerWebApi\FileManagerWebApi\obj\Debug\net5.0\FileManagerWebApi.csproj.CopyComplete
@@ -35,3 +33,10 @@ D:\Projects\VSprojects\FileManagerWebApi\FileManagerWebApi\FileManagerWebApi\bin
 D:\Projects\VSprojects\FileManagerWebApi\FileManagerWebApi\FileManagerWebApi\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
 D:\Projects\VSprojects\FileManagerWebApi\FileManagerWebApi\FileManagerWebApi\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
 D:\Projects\VSprojects\FileManagerWebApi\FileManagerWebApi\FileManagerWebApi\bin\Debug\net5.0\BCrypt.Net-Next.dll
+D:\Projects\VSprojects\FileManagerWebApi\FileManagerWebApi\FileManagerWebApi\bin\Debug\net5.0\FileManagerWebApi.StaticWebAssets.xml
+D:\Projects\VSprojects\FileManagerWebApi\FileManagerWebApi\FileManagerWebApi\obj\Debug\net5.0\staticwebassets\FileManagerWebApi.StaticWebAssets.Pack.cache
+D:\Projects\VSprojects\FileManagerWebApi\FileManagerWebApi\FileManagerWebApi\obj\Debug\net5.0\staticwebassets\msbuild.FileManagerWebApi.Microsoft.AspNetCore.StaticWebAssets.props
+D:\Projects\VSprojects\FileManagerWebApi\FileManagerWebApi\FileManagerWebApi\obj\Debug\net5.0\staticwebassets\msbuild.build.FileManagerWebApi.props
+D:\Projects\VSprojects\FileManagerWebApi\FileManagerWebApi\FileManagerWebApi\obj\Debug\net5.0\staticwebassets\msbuild.buildMultiTargeting.FileManagerWebApi.props
+D:\Projects\VSprojects\FileManagerWebApi\FileManagerWebApi\FileManagerWebApi\obj\Debug\net5.0\staticwebassets\msbuild.buildTransitive.FileManagerWebApi.props
+D:\Projects\VSprojects\FileManagerWebApi\FileManagerWebApi\FileManagerWebApi\obj\Debug\net5.0\refint\FileManagerWebApi.dll

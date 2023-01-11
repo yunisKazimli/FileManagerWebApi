@@ -40,7 +40,7 @@ namespace FileManagerWebApi.Services.FileManagerServices
                 {
                     if (fileUrlText[i] == '\n')
                     {
-                        fileUrlText = fileUrlText.Remove(urlIndex, i - urlIndex);
+                        fileUrlText = fileUrlText.Remove(urlIndex, i + 1 - urlIndex);
 
                         break;
                     }
@@ -50,7 +50,7 @@ namespace FileManagerWebApi.Services.FileManagerServices
             else
             {
                 List<string> fileInfoList = fileInfoText.Split('\n').ToList();
-                List<string> fileUrlList = fileUrlText.Split('\n').ToList();
+                List<string> fileUrlList = fileUrlText.Split('\n').ToList().Where(x => x != "" || x != null).ToList();
 
                 fileInfoText = "";
                 fileUrlText = "";

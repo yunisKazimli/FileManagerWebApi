@@ -5,6 +5,6 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <_PublishTargetUrl>D:\Projects\VSprojects\ReadyProgramms\FileManagerWebApi</_PublishTargetUrl>
-    <History>True|2022-11-23T17:20:59.3295059Z;</History>
+    <History>True|2022-11-27T20:03:48.0922606Z;True|2022-11-23T21:20:59.3295059+04:00;</History>
   </PropertyGroup>
 </Project>

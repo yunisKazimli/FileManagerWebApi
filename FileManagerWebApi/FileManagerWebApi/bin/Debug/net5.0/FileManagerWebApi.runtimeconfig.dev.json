@@ -3,7 +3,8 @@
     "additionalProbingPaths": [
       "C:\\Users\\yunis\\.dotnet\\store\\|arch|\\|tfm|",
       "C:\\Users\\yunis\\.nuget\\packages",
-      "D:\\Programms\\DevExpress\\Offline Packages"
+      "D:\\Programms\\DevExpress\\Offline Packages",
+      "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
     ]
   }
 }
